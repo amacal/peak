@@ -176,7 +176,13 @@ int main(int argc, char **argv) {
   multi_context = peak_create_multi_context(timer, loop, multi_handle);
   timer->data = multi_context;
 
-  curle = curl_easy_setopt(easy_handle, CURLOPT_URL, "https://releases.hashicorp.com/terraform/0.12.18/terraform_0.12.18_linux_amd64.zip");
+  curle = curl_easy_setopt(easy_handle, CURLOPT_URL, "http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-10.2.0-amd64-lxqt.iso");
+  if (curle != CURLE_OK) return -2;
+
+  curle = curl_easy_setopt(easy_handle, CURLOPT_FOLLOWLOCATION, 1L);
+  if (curle != CURLE_OK) return -2;
+
+  curle = curl_easy_setopt(easy_handle, CURLOPT_BUFFERSIZE, 128 * 1024L);
   if (curle != CURLE_OK) return -2;
 
   curle = curl_easy_setopt(easy_handle, CURLOPT_WRITEFUNCTION, peak_write_callback);

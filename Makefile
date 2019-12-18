@@ -2,7 +2,7 @@
 TARGET = peak
 
 CC = gcc
-CFLAGS = -g -Os -Wall
+CFLAGS = -O3 -Wall
 
 LINKER = gcc
 LFLAGS = -Wall -I. -lm -luv -lcurl
